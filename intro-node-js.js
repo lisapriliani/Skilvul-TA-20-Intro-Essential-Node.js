@@ -1,25 +1,22 @@
 const http = require("http");
+const port = 8000;
 
-//membuat server
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "content-type": "text/html" });
-  const read = req.url;
-  //route
-  if (read === "/about") {
+  res.writeHead(200, { "Content-Type": "text/html" });
+
+  const url = req.url;
+  if (url === "/about") {
     res.write("Welcome to about us page");
     res.end();
-  } else if (read === "/contact") {
+  } else if (url === "/contact") {
     res.write("Welcome to contact us page");
     res.end();
   } else {
-    res.write("Hello world");
+    res.write("Hello World!");
     res.end();
   }
 });
 
-//server di port 8000
-server.on("listening", () => {
-  console.log("port 8000");
+server.listen(port, () => {
+  console.log("Server is listening on port ${port}");
 });
-
-server.listen(8000);
